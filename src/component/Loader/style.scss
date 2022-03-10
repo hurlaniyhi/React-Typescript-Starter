@@ -1,0 +1,35 @@
+@import 'src/index.scss';
+
+.loader-container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(#ffffff, .97);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 15;
+}
+
+.loader-wrapper {
+    position: absolute;
+    top: 33%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-logo {
+    margin-bottom: 1.5rem;
+    //animation: pulsation 1s infinite reverse; ;
+
+    @media (max-width: 600px) {
+        width: 25rem
+    }
+}

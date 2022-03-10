@@ -1,0 +1,45 @@
+@import 'src/index.scss';
+
+@keyframes slideInRight {
+    0% {
+        right: -50%;
+        width: 0;
+    }
+    100% {
+        right: 50%;
+    }
+}
+
+.notifier-container {
+    width: 45rem;
+    padding: 1.5rem 2rem !important;
+    position: fixed;
+    top: 3rem;
+    left: 0;
+    z-index: 20 !important;
+    border-radius: 1rem;
+    padding: 0;
+    transition: all 1s;
+
+    @media (max-width: 500px) {
+        width: 40rem
+    }
+    @media (max-width: 325px) {
+        width: 36rem
+    }
+}
+
+.notifier-text {
+    font-size: 1.5rem;
+    padding-left: 3rem;
+    margin: 0 !important;
+    //font-weight: 500;
+}
+.message-icon {
+    padding-right: 1rem !important;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    left: 2rem;
+    transform: translateY(-50%)
+}
