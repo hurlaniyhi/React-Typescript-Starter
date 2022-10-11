@@ -1,7 +1,7 @@
-import User from './users'
-import Statistics from './statistics'
+import Home from './home'
+import Screen2 from './screen2'
 
 export default [
-    User,
-    Statistics
+    Home,
+    Screen2
 ]

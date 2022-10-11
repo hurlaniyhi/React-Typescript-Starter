@@ -15,3 +15,7 @@ export const endpoints = {
 export const initialState = {
    
 }
+
+export const appSettings = {
+    
+}

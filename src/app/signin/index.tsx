@@ -1,9 +1,11 @@
 import utility from 'src/utils/utility'
+import { useNavigate } from 'react-router-dom'
 
 
 const SignIn: React.FC = () => {
+    const navigate = useNavigate()
     return (
-        <p>Signin</p>
+        <p onClick={() => navigate('/dashboard/home')}>Signin</p>
     )
 }
 

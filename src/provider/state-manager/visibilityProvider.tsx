@@ -14,7 +14,7 @@ const VisibilityReducer = (state: any, action: Action<KeyValuePayload>) => {
 export const VisibilityProvider = (props: any) => {
     const [state, dispatch] = useReducer(VisibilityReducer, {
         isLoading: false,
-        notification: {status: false, message: '', type: 'info'}
+        notification: {status: false, message: '', type: 'error'}
     })
 
     async function loader (value: boolean) {
@@ -23,11 +23,11 @@ export const VisibilityProvider = (props: any) => {
 
     const notifier = {
         show: async function (message: string, type?: string) {
-            const messageType = type ? type.toLowerCase() : 'info'
-            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: true, message, type: messageType} }})
+            const messageType = type ? type.toLowerCase() : 'error'
+            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: true, message, type: messageType}}})
         },
         hide: async function () {
-            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: false, message: state.notification.message, type: state.notification.type} }})
+            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: false, message: state.notification.message, type: state.notification.type}}})
         }
     }
   
