@@ -14,27 +14,58 @@ const VisibilityReducer = (state: any, action: Action<KeyValuePayload>) => {
 export const VisibilityProvider = (props: any) => {
     const [state, dispatch] = useReducer(VisibilityReducer, {
         isLoading: false,
-        notification: {status: false, message: '', type: 'error'}
+        notification: {status: false, message: '', title: '', type: 'success'},
+        isSideBar: false,
+        selectedMenu: '/dashboard/home',
+        isOnline: true,
+        decision: {status: false, message: '', cancelBtnText: '', yesBtnText: '', yesMethod: null, noMethod: null }
     })
 
     async function loader (value: boolean) {
         await dispatch({type: "set-visibility", payload: {key: 'isLoading', value }})
     }
 
+    async function showSideBar (value: boolean) {
+        await dispatch({type: "set-visibility", payload: {key: 'isSideBar', value }})
+    }
+
     const notifier = {
-        show: async function (message: string, type?: string) {
+        show: async function (message: string, title = null, type?: string) {
             const messageType = type ? type.toLowerCase() : 'error'
-            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: true, message, type: messageType}}})
+            const messageTitle = title ? title : title === null ? (messageType === 'success' ? 'Success Response' : 'Error Response') : ''
+            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: message ? true : false, message, type: messageType, title: messageTitle}}})
         },
         hide: async function () {
-            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: false, message: state.notification.message, type: state.notification.type}}})
+            await dispatch({type: "set-visibility", payload: {key: 'notification', value: {status: false, message: state.notification.message, type: state.notification.type, title: state.notification.title}}})
         }
+    }
+
+    async function updateSelectedMenu (value: string) {
+        await dispatch({type: "set-visibility", payload: {key: 'selectedMenu', value }})
+        await localStorage.setItem('selectedMenu', value)
+    }
+
+    const decisionBox = {
+        show: async function (message: string, yesMethod: any, noMethod: any, yesBtnText = 'Yes', cancelBtnText = 'Cancel') {
+            await dispatch({type: "set-visibility", payload: {key: 'decision', value: {status: true, message, yesMethod, noMethod, yesBtnText, cancelBtnText} }})
+        },
+        hide: async function () {
+            await dispatch({type: "set-visibility", payload: {key: 'decision', value: {...state.decision, status: false, }}})
+        }
+    }
+
+    async function isConnected (value: boolean) {
+        await dispatch({type: "set-visibility", payload: {key: 'isOnline', value }})
     }
   
 
     const stateActions = {
         loader,
-        notifier
+        showSideBar,
+        notifier,
+        updateSelectedMenu,
+        decisionBox,
+        isConnected
     }
 
     return (

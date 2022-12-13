@@ -13,6 +13,11 @@ const inputValidator = (data: any, exemptedPropertes?: string[]): ValidatorRespo
     return result
 } 
 
+const validateEmail = (email: string): boolean => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+}
+
 export default {
-    inputValidator
+    inputValidator,
+    validateEmail
 }

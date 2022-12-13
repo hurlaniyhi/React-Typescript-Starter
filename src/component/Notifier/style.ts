@@ -2,13 +2,13 @@ import { StyleProps } from 'src/model'
 import styled from 'styled-components'
 
 export const NotifierContainer = styled.div<StyleProps>`
-    left: ${({isNotifier}) => isNotifier ? 50 : -100}%;
+    right: ${({isNotifier}) => isNotifier ? 3 : -70}rem;
     opacity: ${({isNotifier}) => isNotifier ? 1 : 0};
-    transform: ${({isNotifier}) => isNotifier ? 'translateX(-50%)' : 'translateX(0%)'};
-    background-color: #081952;
-    border-left: 8px solid ${({type}) => type === 'success' ? '#2BE76D' : type === 'warning' ? '#FEBA55' : '#FF6062'};
+    transform: translateX(0%);
+    background-color: #ffffff;
 
-    >p, >i {
-        color:
+    @media (max-width: 380px) {
+        right: ${({isNotifier}) => isNotifier ? 50 : 50}%;
+        transform: ${({isNotifier}) => isNotifier ? 'translateX(50%)' : 'translateX(0%)'};
     }
 `

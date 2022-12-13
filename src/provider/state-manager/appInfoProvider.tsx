@@ -30,10 +30,11 @@ export const AppInfoProvider = (props: any) => {
     }
 
     async function recoverAppData () {
-        const userData = await JSON.parse(localStorage.getItem('userData')!)
-        const token = await localStorage.getItem('token')!
-        setInfoProperty('userData', userData)
-        setInfoProperty('token', token)
+        for (let item of Object.keys(initialState)) {
+            let retrievedData = await localStorage.getItem(item)!
+            retrievedData = ['number', 'string'].includes(typeof state[item]) ? retrievedData : ( !['null', 'undefined'].includes(retrievedData) ? JSON.parse(retrievedData): state[item])
+            await setInfoProperty(item, retrievedData)
+        }
     }
 
     async function clearAppData () {

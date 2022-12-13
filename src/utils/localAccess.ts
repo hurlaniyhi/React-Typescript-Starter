@@ -1,16 +1,25 @@
 const access = (function () {
-    var navigation: any = null;
+    let navigation: any = null;
+    let isOnline: boolean = true;
     
-    var setNavigationAccess = function(val: any) {
+    const setNavigationAccess = function(val: any) {
         navigation = val
     }
-    var getNavigationAccess = function() {
+    const getNavigationAccess = function() {
         return navigation;
+    }
+    const setInternetStatus = function(val: boolean) {
+        isOnline = val
+    }
+    const getInternetStatus = function() {
+        return isOnline;
     }
 
     return {
         setNavigationAccess,
-        getNavigationAccess
+        getNavigationAccess,
+        setInternetStatus,
+        getInternetStatus
     }
 })()
 
