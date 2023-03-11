@@ -496,13 +496,16 @@ export const CustomContainer = styled.div<StyleProps>`
     padding-left: ${({leftPadding, padding}) => leftPadding || padding || 0}rem;
     padding-right: ${({rightPadding, padding}) => rightPadding || padding || 0}rem;
     background-color: ${({bgColor}) => bgColor || 'transparent'};
-    border-radius: ${({radius}) => radius || 0}rem;
+    border-radius: ${({radius, customRadius}) => customRadius ? customRadius : radius ? `${radius}rem` : '0rem'};
     border: ${({borderColor}) => borderColor ? `1px solid ${borderColor}` : 'none'};
     overflow: ${({overflow}) => overflow || 'hidden'};
     position: relative;
     box-shadow: ${({shadow}) => shadow || 'none'};
     min-height: ${({minHeight, mnHUnit}) => mnHUnit && minHeight ? `${minHeight}${mnHUnit}` : minHeight ? `${minHeight}rem` : 'none'};
     max-height: ${({maxHeight, mxHUnit}) => mxHUnit && maxHeight ? `${maxHeight}${mxHUnit}` : maxHeight ? `${maxHeight}rem` : 'none'};
+    min-width: ${({minWidth, mnWUnit}) => mnWUnit && minWidth ? `${minWidth}${mnWUnit}` : minWidth ? `${minWidth}rem` : 'none'};
+    max-width: ${({maxWidth, mxWUnit}) => mxWUnit && maxWidth ? `${maxWidth}${mxWUnit}` : maxWidth ? `${maxWidth}rem` : 'none'};
+    transition: all 0.2s;
     
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -510,6 +513,32 @@ export const CustomContainer = styled.div<StyleProps>`
     &::-webkit-scrollbar {
         display: none
     }
+`
+
+export const GridContainer = styled.div<StyleProps>`
+    display: grid;
+    place-items: ${({alignItems}) => alignItems || 'center'};
+    width: ${({width, sizeUnit}) => sizeUnit && width ? `${width}${sizeUnit}` : width ? `${width}rem` : '100%'};
+    height: ${({height, hUnit}) => hUnit && height ? `${height}${hUnit}` : height ? `${height}rem` : 'auto'};
+    margin-top: ${({topMargin}) => topMargin || 0}rem;
+    margin-bottom: ${({bottomMargin}) => bottomMargin}rem;
+    margin-left: ${({leftMargin}) => leftMargin || 0}rem;
+    margin-right: ${({rightMargin}) => rightMargin || 0}rem;
+    padding-top: ${({topPadding, padding}) => topPadding || padding || 0}rem;
+    padding-bottom: ${({bottomPadding, padding}) => bottomPadding || padding || 0}rem;
+    padding-left: ${({leftPadding, padding}) => leftPadding || padding || 0}rem;
+    padding-right: ${({rightPadding, padding}) => rightPadding || padding || 0}rem;
+    background-color: ${({bgColor}) => bgColor || 'transparent'};
+    border-radius: ${({radius}) => radius || 0}rem;
+    border: 1px solid ${({borderColor}) => borderColor || 'transparent'};
+    box-shadow: ${({shadow}) => shadow || 'none'};
+    min-height: ${({minHeight, mnHUnit}) => mnHUnit && minHeight ? `${minHeight}${mnHUnit}` : minHeight ? `${minHeight}rem` : 'none'};
+    max-height: ${({maxHeight, mxHUnit}) => mxHUnit && maxHeight ? `${maxHeight}${mxHUnit}` : maxHeight ? `${maxHeight}rem` : 'none'};
+    min-width: ${({minWidth, mnWUnit}) => mnWUnit && minWidth ? `${minWidth}${mnWUnit}` : minWidth ? `${minWidth}rem` : 'none'};
+    max-width: ${({maxWidth, mxWUnit}) => mxWUnit && maxWidth ? `${maxWidth}${mxWUnit}` : maxWidth ? `${maxWidth}rem` : 'none'};
+    position: relative;
+    transition: all 0.2s;
+    cursor: pointer;
 `
 
 export const FlexColumn = styled.div<StyleProps>`
@@ -533,13 +562,16 @@ export const FlexColumn = styled.div<StyleProps>`
     box-shadow: ${({shadow}) => shadow || 'none'};
     min-height: ${({minHeight, mnHUnit}) => mnHUnit && minHeight ? `${minHeight}${mnHUnit}` : minHeight ? `${minHeight}rem` : 'none'};
     max-height: ${({maxHeight, mxHUnit}) => mxHUnit && maxHeight ? `${maxHeight}${mxHUnit}` : maxHeight ? `${maxHeight}rem` : 'none'};
+    min-width: ${({minWidth, mnWUnit}) => mnWUnit && minWidth ? `${minWidth}${mnWUnit}` : minWidth ? `${minWidth}rem` : 'none'};
+    max-width: ${({maxWidth, mxWUnit}) => mxWUnit && maxWidth ? `${maxWidth}${mxWUnit}` : maxWidth ? `${maxWidth}rem` : 'none'};
     position: relative;
 `
 export const FlexRow = styled.div<StyleProps>`
     display: flex;
     flex-direction: row;
-    justify-content: ${({justifyContent}) => justifyContent || 'center'};
+    justify-content: ${({justifyContent}) => justifyContent || 'flex-start'};
     align-items: ${({alignItems}) => alignItems || 'center'};
+    gap: ${({gap, sizeUnit}) => sizeUnit && gap ? `${gap}${sizeUnit}` : gap ? `${gap}rem` : '0'};
     flex-wrap: ${({wrap}) => wrap || 'nowrap'};
     width: ${({width, sizeUnit}) => sizeUnit && width ? `${width}${sizeUnit}` : width ? `${width}rem` : '100%'};
     height: ${({height, hUnit}) => hUnit && height ? `${height}${hUnit}` : height ? `${height}rem` : 'auto'};
@@ -557,13 +589,16 @@ export const FlexRow = styled.div<StyleProps>`
     box-shadow: ${({shadow}) => shadow || 'none'};
     min-height: ${({minHeight, mnHUnit}) => mnHUnit && minHeight ? `${minHeight}${mnHUnit}` : minHeight ? `${minHeight}rem` : 'none'};
     max-height: ${({maxHeight, mxHUnit}) => mxHUnit && maxHeight ? `${maxHeight}${mxHUnit}` : maxHeight ? `${maxHeight}rem` : 'none'};
+    min-width: ${({minWidth, mnWUnit}) => mnWUnit && minWidth ? `${minWidth}${mnWUnit}` : minWidth ? `${minWidth}rem` : 'none'};
+    max-width: ${({maxWidth, mxWUnit}) => mxWUnit && maxWidth ? `${maxWidth}${mxWUnit}` : maxWidth ? `${maxWidth}rem` : 'none'};
+    z-index: ${({zIndex}) => zIndex || 1};
     position: relative;
     cursor: pointer;
 `
 export const AppText = styled.p<StyleProps>`
     font-size: ${({textSize}) => textSize || 1.4}rem;
     width: ${({width, sizeUnit}) => sizeUnit && width ? `${width}${sizeUnit}` : width ? `${width}rem` : 'auto'};
-    color: ${({color}) => color || '#667085'};
+    color: ${({color}) => color || '#000000'};
     font-weight: ${({fontWeight}) => fontWeight || 400};
     margin-top: ${({topMargin}) => topMargin || 0}rem;
     margin-bottom: ${({bottomMargin}) => bottomMargin || 0}rem;
@@ -577,11 +612,16 @@ export const AppText = styled.p<StyleProps>`
     font-family: ${({fontFamily}) => fontFamily && fontFamily};
     word-wrap: break-word;
     cursor: ${({cursor}) => cursor || 'auto'};
+    overflow-wrap: ${({textWrap}) => textWrap || 'anywhere'};
+
+    &:hover {
+        color: ${({color, hoverColor}) => hoverColor || color};
+    }
 `
 export const AppSpan = styled.span<StyleProps>`
     width: ${({width, sizeUnit}) => sizeUnit && width ? `${width}${sizeUnit}` : width ? `${width}rem` : 'auto'};
     font-size: ${({textSize}) => textSize || 1.4}rem;
-    color: ${({color}) => color || '#667085'};
+    color: ${({color}) => color || '#000000'};
     font-weight: ${({fontWeight}) => fontWeight || 400};
     margin-top: ${({topMargin}) => topMargin || 0}rem;
     margin-bottom: ${({bottomMargin}) => bottomMargin}rem;
@@ -604,7 +644,7 @@ export const AppSpan = styled.span<StyleProps>`
 export const ScreenTitle = styled.h4<StyleProps>`
     width: ${({width, sizeUnit}) => sizeUnit && width ? `${width}${sizeUnit}` : width ? `${width}rem` : 'auto'};
     font-size: ${({textSize}) => textSize || 1.4}rem;
-    color: ${({color}) => color || '#667085'};
+    color: ${({color}) => color || '#000000'};
     font-weight: ${({fontWeight}) => fontWeight || 400};
     margin-top: ${({topMargin}) => topMargin || 0}rem;
     margin-bottom: ${({bottomMargin}) => bottomMargin}rem;
@@ -618,7 +658,7 @@ export const ScreenTitle = styled.h4<StyleProps>`
     font-family: ${({fontFamily}) => fontFamily && fontFamily}
 `
 export const AppLink = styled.a<StyleProps>`
-    color: ${({color}) => color || '#667085'};
+    color: ${({color}) => color || '#000000'};
     text-decoration: ${({decoration}) => decoration || 'underline'};
     font-size: ${({textSize}) => textSize || 1.4}rem;
     font-weight: ${({fontWeight}) => fontWeight || 400};
@@ -650,7 +690,7 @@ export const AppLink = styled.a<StyleProps>`
     }
 `
 export const AppLabel = styled.label<StyleProps>`
-    color: ${({color}) => color || '#667085'};
+    color: ${({color}) => color || '#000000'};
     text-decoration: ${({decoration}) => decoration || 'none'};
     font-size: ${({textSize}) => textSize || 1.4}rem;
     font-weight: ${({fontWeight}) => fontWeight || 400};
@@ -678,12 +718,12 @@ export const Icon = styled.img<StyleProps>`
     margin-left: ${({leftMargin}) => leftMargin || 0}rem;
     margin-right: ${({rightMargin}) => rightMargin || 0}rem;
     width: ${({width}) => `${width}rem` || 'auto'};
-    min-width: 100%;
+    min-width: ${({minWidth}) => `${minWidth}%` || 'auto'};
     max-width: 100%;
     height: 100%;
 
     @media (max-width: 600px) {
-        transform: scale(0.85)
+        transform: ${({noResize}) => noResize ? 'scale(1)' : 'scale(0.85)'}
     }
 `
 
@@ -751,6 +791,8 @@ export const Circle = styled.div<StyleProps>`
     display: grid;
     place-items: center;
     transition: all .2s;
+    overflow: ${({overflow}) => overflow || 'auto'};
+    position: relative;
 ` 
 export const RoundImageContainer = styled.div<StyleProps>`
     width: ${({size}) => size || 2}rem;

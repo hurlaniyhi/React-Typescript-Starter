@@ -59,6 +59,10 @@ export interface StyleProps {
     mnHUnit?: string,
     maxHeight?: string,
     mxHUnit?: string,
+    minWidth?: string,
+    mnWUnit?: string,
+    maxWidth?: string,
+    mxWUnit?: string,
     cursor?: string,
     borderWidth?: string,
     sliderWidth?: string,
@@ -72,4 +76,9 @@ export interface StyleProps {
     rSizeUnit?: string,
     tSizeUnit?: string,
     bSizeUnit?: string,
+    gap?: string,
+    noFocusBorder?: boolean,
+    customRadius?: string,
+    noResize?: boolean,
+    textWrap?: string
 }
